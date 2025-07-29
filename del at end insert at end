@@ -1,0 +1,67 @@
+# inertio at begin deletion operation  at end in double linkedlist
+
+# insetion at end  and deletion at end on double linkedllist
+class Node():
+    def __init__(self,data):
+        self.data=data
+        self.perv=None
+        self.next=None
+class Doublylinkedlist():
+    def __init__(self):
+        self.head=None
+    def iae(self,data):
+        newnode=Node(data)
+        if self.head is None:#check head node is empty
+            self.head=newnode #if head is empty nwenode is assigned as head node
+            return
+        temp=self.head  #temp is current location
+        while temp.next:
+            temp=temp.next 
+        temp.next=newnode
+        newnode.prev=temp
+    def deleteatend(self):
+        if self.head is None:#checs if the has elements
+            print("Empty ll")#i no elementsthen returns emptyll
+            return
+        temp=self.head  #temp on head node
+        while temp.next: #iterates utill last node
+            temp=temp.next 
+        print(f"Deleted last element :{temp.data}")
+        if temp.prev:
+            temp.prev.next=None
+        else:
+            self.head=None
+    def display(self):
+        temp=self.head
+        print("Doubly Linked List:")
+        while temp:
+            print(temp.data,end="<--->")
+            temp=temp.next
+        print("Null")
+dll=Doublylinkedlist()
+n=int(input("Enter the number of Elements to insert at end  :"))
+for i in range(n):
+    val=int(input(f" Enter element {i+1}:"))
+    dll.iae(val)
+dll.display()
+d=int(input("Enter no of times you want to delete:"))
+for i in range(d):
+    dll.deleteatend()
+    dll.display()
+
+output:
+Enter the number of Elements to insert at end  : 5
+ Enter element 1: 5
+ Enter element 2: 6
+ Enter element 3: 9
+ Enter element 4: 8
+ Enter element 5: 7
+Doubly Linked List:
+5<--->6<--->9<--->8<--->7<--->Null
+Enter no of times you want to delete: 2
+Deleted last element :7
+Doubly Linked List:
+5<--->6<--->9<--->8<--->Null
+Deleted last element :8
+Doubly Linked List:
+5<--->6<--->9<--->Null
