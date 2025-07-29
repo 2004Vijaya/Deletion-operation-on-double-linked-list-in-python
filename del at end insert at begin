@@ -1,0 +1,63 @@
+# inertio at begin deletion operation  at end in double linkedlist
+
+# insetion at begin  and deletion at end on double linkedllist
+class Node():
+    def __init__(self,data):
+        self.data=data
+        self.perv=None
+        self.next=None
+class Doublylinkedlist():
+    def __init__(self):
+        self.head=None
+    def iab(self,data):
+        newnode=Node(data)
+        newnode.next=self.head
+        if self.head:
+            self.head.prev=newnode
+        self.head=newnode
+    def deleteatend(self):
+        if self.head is None:#checs if the has elements
+            print("Empty ll")#i no elementsthen returns emptyll
+            return
+        temp=self.head  #temp on head node
+        while temp.next: #iterates utill last node
+            temp=temp.next 
+        print(f"Deleted last element :{temp.data}")
+        if temp.prev:
+            temp.prev.next=None
+        else:
+            self.head=None
+    def display(self):
+        temp=self.head
+        print("Doubly Linked List:")
+        while temp:
+            print(temp.data,end="<--->")
+            temp=temp.next
+        print("Null")
+dll=Doublylinkedlist()
+n=int(input("Enter the number of Elements to insert at end  :"))
+for i in range(n):
+    val=int(input(f" Enter element {i+1}:"))
+    dll.iab(val)
+dll.display()
+d=int(input("Enter no of times you want to delete:"))
+for i in range(d):
+    dll.deleteatend()
+    dll.display()
+
+output:
+Enter the number of Elements to insert at end  : 5
+ Enter element 1: 10
+ Enter element 2: 20
+ Enter element 3: 30
+ Enter element 4: 40
+ Enter element 5: 50
+Doubly Linked List:
+50<--->40<--->30<--->20<--->10<--->Null
+Enter no of times you want to delete: 2
+Deleted last element :10
+Doubly Linked List:
+50<--->40<--->30<--->20<--->Null
+Deleted last element :20
+Doubly Linked List:
+50<--->40<--->30<--->Null
