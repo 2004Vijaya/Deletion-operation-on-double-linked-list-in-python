@@ -1,0 +1,67 @@
+#delete by value nsert at end
+class Node():
+    def __init__(self,data):
+        self.data=data
+        self.perv=None
+        self.next=None
+class Doublylinkedlist():
+    def __init__(self):
+        self.head=None
+    def iae(self,data):
+        newnode=Node(data)
+        if self.head is None:#check head node is empty
+            self.head=newnode #if head is empty nwenode is assigned as head node
+            return
+        temp=self.head  #temp is current location
+        while temp.next:
+            temp=temp.next 
+        temp.next=newnode
+        newnode.prev=temp
+    def deletebyvalue(self):
+        temp=self.head
+        key=int(input("Enter a value you want to delete:"))
+        if not temp:
+            print("Empty ll")
+            return
+        if temp.data==key:
+            self.head=temp.next
+            print(f"{key} deleted from the list")
+            return
+        prev=None
+        while temp and temp.data!=key:
+            prev=temp
+            temp=temp.next
+        if not temp:
+            print(f"{key} not found in ll")
+            return
+        prev.next=temp.next
+        print(f"{key} deleted from the linked list")
+    def display(self):
+        temp=self.head
+        print("Doubly Linked List:")
+        while temp:
+            print(temp.data,end="<--->")
+            temp=temp.next
+        print("Null")
+dll=Doublylinkedlist()
+n=int(input("Enter the number of Elements to insert at end  :"))
+for i in range(n):
+    val=int(input(f" Enter element {i+1}:"))
+    dll.iae(val)
+dll.display()
+dll.deletebyvalue()
+dll.display()
+
+output:
+Enter the number of Elements to insert at end  : 5
+ Enter element 1: 1
+ Enter element 2: 2
+ Enter element 3: 3
+ Enter element 4: 4
+ Enter element 5: 5
+Doubly Linked List:
+1<--->2<--->3<--->4<--->5<--->Null
+Enter a value you want to delete: 5
+5 deleted from the linked list
+Doubly Linked List:
+1<--->2<--->3<--->4<--->Null
